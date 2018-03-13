@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import mcssoft.com.shoppinglist.R;
-import mcssoft.com.shoppinglist.adapter.ShoppingPagerAdapter;
+import mcssoft.com.shoppinglist.adapter.pager.ShoppingPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
