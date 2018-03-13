@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import butterknife.ButterKnife;
+import mcssoft.com.shoppinglist.adapter.ShoppingItemAdapter;
 import mcssoft.com.shoppinglist.interfaces.mvp.IModelPresenter;
 import mcssoft.com.shoppinglist.interfaces.mvp.IPresenterModel;
 
@@ -30,9 +31,12 @@ public class ShoppingModelImpl implements IModelPresenter {
     }
 
     private void setAdapter() {
-
+        adapter = new ShoppingItemAdapter(iPresenterModel.getContext());
+//        adapter.setClickListener(iPresenterModel.getClickListener());
+        iPresenterModel.getRecyclerView().setAdapter(adapter);
     }
 
     private IPresenterModel iPresenterModel;
+    private ShoppingItemAdapter adapter;
 
 }
