@@ -10,7 +10,7 @@ import mcssoft.com.shoppinglist.interfaces.room.IShoppingDAO;
 import mcssoft.com.shoppinglist.model.database.ReferenceValues;
 import mcssoft.com.shoppinglist.model.database.ShoppingItem;
 
-@Database(entities = {ShoppingItem.class, ReferenceValues.class}, version=1, exportSchema = false)
+@Database(entities = {ShoppingItem.class, ReferenceValues.class}, version = 1, exportSchema = false)
 public abstract class RaceDatabase extends RoomDatabase {
 
     static synchronized public RaceDatabase getInstance(Context context) {

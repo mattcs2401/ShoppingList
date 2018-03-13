@@ -1,11 +1,9 @@
 package mcssoft.com.shoppinglist.fragment;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-//import android.support.v4.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -98,7 +96,7 @@ public class ShoppingFragment extends Fragment implements IViewPresenter, IClick
         llm.scrollToPosition(0);
         recyclerView.setLayoutManager(llm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        recyclerView.setAdapter(adapter);
+        // Note: the recyclerview adapter is set in the model.
     }
 
     private IPresenterView iPresenterView;

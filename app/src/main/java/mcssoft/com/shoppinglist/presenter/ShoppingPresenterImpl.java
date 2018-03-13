@@ -11,7 +11,7 @@ import mcssoft.com.shoppinglist.interfaces.mvp.IModelPresenter;
 import mcssoft.com.shoppinglist.interfaces.mvp.IPresenterModel;
 import mcssoft.com.shoppinglist.interfaces.mvp.IPresenterView;
 import mcssoft.com.shoppinglist.interfaces.mvp.IViewPresenter;
-import mcssoft.com.shoppinglist.interfaces.mvp.click.IClick;
+import mcssoft.com.shoppinglist.interfaces.click.IClick;
 import mcssoft.com.shoppinglist.model.impl.ShoppingModelImpl;
 
 public class ShoppingPresenterImpl implements IPresenterModel, IPresenterView {
