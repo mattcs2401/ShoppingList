@@ -1,8 +1,11 @@
 package mcssoft.com.shoppinglist.fragment;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+//import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,10 +16,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import mcssoft.com.shoppinglist.R;
 import mcssoft.com.shoppinglist.adapter.ShoppingItemAdapter;
+import mcssoft.com.shoppinglist.interfaces.click.IClick;
+import mcssoft.com.shoppinglist.interfaces.mvp.IPresenterView;
+import mcssoft.com.shoppinglist.interfaces.mvp.IViewPresenter;
+import mcssoft.com.shoppinglist.presenter.ShoppingPresenterImpl;
 
-public class ShoppingFragment extends Fragment {
+public class ShoppingFragment extends Fragment implements IViewPresenter, IClick.ItemClick {
 
     //<editor-fold defaultstate="collapsed" desc="Region: Lifecycle">
     @Override
@@ -27,8 +37,9 @@ public class ShoppingFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.shopping_fragment, container, false);
-        return rootView;
+        View view = inflater.inflate(R.layout.shopping_fragment, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -37,8 +48,9 @@ public class ShoppingFragment extends Fragment {
 
 //        pageCode = getArguments().getString(Resources.getInstance().getString(R.string.bundle_pagecode_key));
 
-        setShoppingAdapter();     // set adapter associated with the recycler view.
         setRecyclerView();        // set the recycler view.
+        iPresenterView = new ShoppingPresenterImpl(this, null);
+
     }
 
     @Override
@@ -46,24 +58,52 @@ public class ShoppingFragment extends Fragment {
         inflater.inflate(R.menu.menu_shopping_item, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
     //</editor-fold>
 
-    private void setShoppingAdapter() {
-        adapter = new ShoppingItemAdapter();
-//        adapter.setData(Database.getInstance().getAllReferenceItems(pageCode));
-//        adapter.setOnItemClickListener(this);
+    //<editor-fold defaultstate="collapsed" desc="Region: IViewPresenter">
+    @Override
+    public Context getContext() {
+        return getActivity().getApplicationContext();
     }
 
+    @Override
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    @Override
+    public IClick.ItemClick getClickListener() {
+        return this;
+    }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Region: IClick.ItemClick">
+    @Override
+    public void onItemClick(View view, @Nullable int lPos) {
+        // TBA
+        String bp = "";
+//        iMainActivity.showRaceFragment(iPresenterViewMeeting.getMeeting(lPos));
+    }
+    //</editor-fold>
+
     private void setRecyclerView() {
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.id_rv_shopping_item);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         llm.scrollToPosition(0);
         recyclerView.setLayoutManager(llm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+//        recyclerView.setAdapter(adapter);
     }
 
-    private View rootView;
-    private ShoppingItemAdapter adapter;
+    private IPresenterView iPresenterView;
+
+    // Butter Knife.
+    private Unbinder unbinder;
+    @BindView(R.id.id_rv_shopping_item) RecyclerView recyclerView;
 }

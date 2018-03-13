@@ -1,4 +1,4 @@
-package mcssoft.com.shoppinglist.interfaces.mvp.click;
+package mcssoft.com.shoppinglist.interfaces.click;
 
 import android.support.annotation.Nullable;
 import android.view.View;
