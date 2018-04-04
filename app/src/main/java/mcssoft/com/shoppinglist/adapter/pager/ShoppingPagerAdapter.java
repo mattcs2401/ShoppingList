@@ -1,4 +1,4 @@
-package mcssoft.com.shoppinglist.adapter;
+package mcssoft.com.shoppinglist.adapter.pager;
 
 import android.content.Context;
 import android.os.Bundle;
