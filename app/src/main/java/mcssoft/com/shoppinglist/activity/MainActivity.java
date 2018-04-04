@@ -19,16 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
         // create the adapter that will return a fragment for each of the three primary sections of
         // the activity.
-        pagerAdapter = new ShoppingPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
+//        pagerAdapter = new ShoppingPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
 
         // set up the ViewPager with the adapter.
         viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setAdapter(pagerAdapter);
+        viewPager.setAdapter(new ShoppingPagerAdapter(getSupportFragmentManager(), this.getApplicationContext()));
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
